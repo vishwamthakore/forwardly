@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+black
+python-multipart
+pdfplumber
+python-dotenv
+openai
+sqlmodel
