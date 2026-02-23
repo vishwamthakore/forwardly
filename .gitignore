@@ -3,6 +3,7 @@ venv
 .env
 *.db
 uploads/
+uploads_temp/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
