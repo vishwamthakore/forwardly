@@ -2,6 +2,7 @@ temp
 venv
 .env
 *.db
+uploads/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

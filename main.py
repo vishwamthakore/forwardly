@@ -4,6 +4,7 @@ from items.schemas import HealthStatus
 from items.router import router as item_router
 from resumes.router import router as resume_router
 from job_descriptions.router import router as job_description_router
+from analysis.router import router as analysis_router
 from config.handlers import add_all_exception_handlers
 from services.database import init_db
 from contextlib import asynccontextmanager
@@ -27,4 +28,5 @@ def health():
 app.include_router(item_router)
 app.include_router(resume_router)
 app.include_router(job_description_router)
+app.include_router(analysis_router)
 
