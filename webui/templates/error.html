@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+  <div class="card shadow-sm p-4">
+    <h3 class="text-danger">Something went wrong</h3>
+    <p>{{ message }}</p>
+
+    <a href="/ui/resumes" class="btn btn-primary mt-3">Go back</a>
+  </div>
+</div>
+
+{% endblock %}

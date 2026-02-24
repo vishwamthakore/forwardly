@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h4 class="mb-4">Resume Comparison Report</h4>
+
+  <!-- Resume + Job Info -->
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="mb-2 muted-label">RESUME</div>
+      <div class="file-name mb-3">{{ resume.original_filename }}</div>
+
+      <div class="mb-2 muted-label">JOB ROLE</div>
+      <div class="file-name">{{ job_description.name }}</div>
+    </div>
+  </div>
+
+  <!-- Match Score -->
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div>
+          <div class="muted-label">MATCH SCORE</div>
+          <h2 class="mb-0">{{ analysis_data.matching_score }}%</h2>
+        </div>
+        <div class="text-end">
+          <div class="muted-label">Skill Coverage</div>
+          <div>{{ (analysis_data.required_skill_coverage * 100)|round(0) }}%</div>
+        </div>
+      </div>
+
+      <!-- progress bar -->
+      <div class="progress mt-3" style="height:10px;">
+        <div class="progress-bar bg-dark" role="progressbar" style="width: {{ analysis_data.matching_score }}%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strong Skills -->
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="muted-label mb-2">STRONG MATCHING SKILLS</div>
+
+      {% for skill in analysis_data.strong_matching_skills %}
+        <span class="badge bg-success-subtle text-success border me-2 mb-2">{{ skill }}</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Missing Skills -->
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="muted-label mb-2">MISSING REQUIRED SKILLS</div>
+
+      {% for skill in analysis_data.missing_required_skills %}
+        <span class="badge bg-danger-subtle text-danger border me-2 mb-2">{{ skill }}</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Fit -->
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="muted-label mb-3">ROLE FIT</div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="muted-label">Experience</div>
+          <div>{{ analysis_data.experience_match }}</div>
+        </div>
+        <div class="col-md-4">
+          <div class="muted-label">Seniority</div>
+          <div>{{ analysis_data.seniority_match }}</div>
+        </div>
+        <div class="col-md-4">
+          <div class="muted-label">Education</div>
+          <div>{{ analysis_data.education_match }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gap Summary (Dark Panel) -->
+
+  <div class="card mb-4">
+    <div class="card-body rounded-3">
+      <div class="muted-label mb-2">GAP ANALYSIS</div>
+      <p class="mb-0">{{ analysis_data.gap_summary }}</p>
+    </div>
+  </div>
+
+  <!-- Learning Plan -->
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="muted-label mb-3">PRIORITY SKILLS TO LEARN</div>
+
+      <ul class="mb-3">
+        {% for skill in analysis_data.priority_skills_to_learn %}
+          <li>
+            <strong>{{ skill }}</strong>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <div class="muted-label">Estimated Preparation Time</div>
+      <div class="file-name">{{ analysis_data.estimated_preparation_time }}</div>
+    </div>
+  </div>
+
+  <!-- Final Assessment (Dark Panel) -->
+
+  <div class="card mb-5">
+    <div class="card-body rounded-3">
+      <div class="muted-label mb-2">OVERALL ASSESSMENT</div>
+      <p class="mb-0">{{ analysis_data.overall_assessment }}</p>
+    </div>
+  </div>
+{% endblock %}

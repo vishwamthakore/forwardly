@@ -8,6 +8,7 @@ from resumes.utils import upload_pdf_file
 from resumes.utils import UPLOAD_DIR
 from resumes.database_service import save_resume, get_resume_by_id, save_extracted_text
 from resumes.models import Resume
+from resumes.database_service import list_resumes
 
 router = APIRouter(tags=["Resumes"])
 
@@ -41,3 +42,7 @@ def get_resume(resume_id: int, parse_again: bool = False) -> Resume:
     save_extracted_text(resume_id=resume_id, extracted_text=text, parsed_json=structured)
     resume: Resume = get_resume_by_id(resume_id)
     return resume
+
+@router.get("/resume")
+def get_resumes(limit: int = 5):
+    return list_resumes(limit)

@@ -4,7 +4,7 @@ from job_descriptions.models import JobDescription
 from job_descriptions.schemas import JobDescriptionInput
 from job_descriptions.llm_service import parse_job_description_with_llm
 from job_descriptions.text_service import generate_jd_name
-from job_descriptions.database_service import save_job_description, get_job_description_by_id
+from job_descriptions.database_service import save_job_description, get_job_description_by_id, list_job_descriptions
 
 
 router = APIRouter(tags=["Job Description"])
@@ -28,3 +28,7 @@ def create_job_description(job_description_input: JobDescriptionInput):
 def get_resume(job_description_id: int) -> JobDescription:    
     job_description = get_job_description_by_id(job_description_id) 
     return job_description   
+
+@router.get("/job-description")
+def get_job_descriptions(limit: int = 5):
+    return list_job_descriptions(limit)

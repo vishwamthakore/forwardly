@@ -3,6 +3,7 @@ import json
 from services.database import get_session
 from resumes.models import Resume
 from config.exceptions import NotFoundException
+from sqlmodel import select
 
 
 def save_resume(original_filename: str, saved_filename: str) -> Resume:
@@ -60,3 +61,22 @@ def get_resume_by_id(resume_id: int) -> Resume:
 
     session.close()
     return resume
+
+
+def list_resumes(limit=5):
+    session = get_session()
+
+    statement = select(
+        Resume.id,
+        Resume.original_filename,
+        Resume.saved_filename,
+        Resume.is_parsed,
+        Resume.created_at
+    ).order_by(Resume.created_at.desc()).limit(limit)
+
+    results = session.exec(statement).mappings().all()
+
+    session.close()
+
+    # Already dict-like → just convert to normal dict
+    return [dict(r) for r in results]

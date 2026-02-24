@@ -8,6 +8,7 @@ from analysis.router import router as analysis_router
 from config.handlers import add_all_exception_handlers
 from services.database import init_db
 from contextlib import asynccontextmanager
+from webui.router import router as webui_router
 
 
 @asynccontextmanager
@@ -29,4 +30,5 @@ app.include_router(item_router)
 app.include_router(resume_router)
 app.include_router(job_description_router)
 app.include_router(analysis_router)
+app.include_router(webui_router)
 

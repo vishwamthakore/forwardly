@@ -2,6 +2,7 @@ import json
 from services.database import get_session
 from job_descriptions.models import JobDescription
 from config.exceptions import NotFoundException
+from sqlmodel import select
 
 def save_job_description(text: str, structured: dict, name: str) -> JobDescription:
     session = get_session()
@@ -39,3 +40,20 @@ def get_job_description_by_id(id: int) -> JobDescription:
 
     session.close()
     return job_description 
+
+
+def list_job_descriptions(limit=5):
+    session = get_session()
+
+    statement = select(
+        JobDescription.id,
+        JobDescription.name,
+        JobDescription.created_at
+    ).order_by(JobDescription.created_at.desc()).limit(limit)
+
+    results = session.exec(statement).mappings().all()
+
+    session.close()
+
+    # Already dict-like → just convert to normal dict
+    return [dict(r) for r in results]
