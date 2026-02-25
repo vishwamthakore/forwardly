@@ -30,17 +30,16 @@
         </div>
       {% endfor %}
     </div>
-
-    <div>
-      Selected Resume <span id="resume-id">{{ resume_id }}</span>
-    </div>
-
     <div class="mt-4 text-end">
       <a id="continueBtn" class="btn btn-primary disabled">Continue</a>
     </div>
   {% else %}
     <div class="text-muted">No Job Descriptions uploaded yet</div>
   {% endif %}
+
+  <div>
+      Selected Resume <span id="resume-id">{{ resume_id }}</span>
+  </div>
 
   <script>
     // -----------------------------------------------------------------------------
