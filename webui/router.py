@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import RedirectResponse
 from resumes.database_service import list_resumes
 from analysis.router import create_analysis
 from analysis.schemas import AnalysisRequest
@@ -15,6 +16,10 @@ router = APIRouter(tags=["Web UI"])
 # Tell Jinja where templates live
 templates = Jinja2Templates(directory="webui/templates")
 
+
+@router.get("/")
+def root():
+    return RedirectResponse(url="/ui/resumes", status_code=302)
 
 @router.get("/ui/resumes", response_class=HTMLResponse)
 def resumes_page(request: Request, limit=10):

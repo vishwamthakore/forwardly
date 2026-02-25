@@ -1,7 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  
+  <!-- Create Job Description -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="mb-2 file-name">Add Job Description</div>
+
+      <textarea id="jdText" class="form-control mb-3" rows="6" placeholder="Paste the job description here..."></textarea>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <div id="jdStatus" class="muted-label"></div>
+
+        <button id="createJdBtn" class="btn btn-primary">Create Job Description</button>
+      </div>
+    </div>
+  </div>
 
   {% if job_descriptions %}
     <div id="resumeList" class="vstack gap-3">
@@ -18,7 +31,9 @@
       {% endfor %}
     </div>
 
-    <div>Selected Resume <span id="resume-id">{{ resume_id }}</span></div>
+    <div>
+      Selected Resume <span id="resume-id">{{ resume_id }}</span>
+    </div>
 
     <div class="mt-4 text-end">
       <a id="continueBtn" class="btn btn-primary disabled">Continue</a>
@@ -27,13 +42,19 @@
     <div class="text-muted">No Job Descriptions uploaded yet</div>
   {% endif %}
 
- <script>
+  <script>
     // -----------------------------------------------------------------------------
     var selectedJobId = null
     
     var cards = document.querySelectorAll('.resume-card')
     var continueBtn = document.getElementById('continueBtn')
-    var resumeId = document.getElementById('resume-id').innerHTML;
+    var resumeId = document.getElementById('resume-id').innerHTML
+    
+    var createBtn = document.getElementById('createJdBtn')
+    var jdTextBox = document.getElementById('jdText')
+    var jdStatus = document.getElementById('jdStatus')
+    
+    createBtn.addEventListener('click', createJobDescription)
     
     for (var i = 0; i < cards.length; i++) {
       cards[i].addEventListener('click', selectJobCard)
@@ -64,7 +85,46 @@
       // Enable button
       continueBtn.classList.remove('disabled')
     }
-</script>
-
+    
+    // -----------------------------------------------------------------------------
+    // Create job description
+    
+    function createJobDescription() {
+      var text = jdTextBox.value.trim()
+    
+      if (text.length === 0) {
+        jdStatus.textContent = 'Please paste a job description.'
+        return
+      }
+    
+      jdStatus.textContent = 'Creating...'
+      createBtn.classList.add('disabled')
+    
+      var xhr = new XMLHttpRequest()
+    
+      xhr.open('POST', '/job-description/', true)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+    
+      xhr.onload = function () {
+        if (xhr.status === 200 || xhr.status === 201) {
+          jdStatus.textContent = 'Created successfully. Reloading...'
+          window.location.reload()
+        } else {
+          jdStatus.textContent = 'Error creating job description.'
+          createBtn.classList.remove('disabled')
+        }
+      }
+    
+      xhr.onerror = function () {
+        jdStatus.textContent = 'Network error.'
+        createBtn.classList.remove('disabled')
+      }
+    
+      var payload = JSON.stringify({
+        text: text
+      })
+    
+      xhr.send(payload)
+    }
+  </script>
 {% endblock %}
-
