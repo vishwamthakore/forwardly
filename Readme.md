@@ -12,7 +12,7 @@ Deployed on Railway.
 https://forwardly-production-d959.up.railway.app/
 
 
-## 🧠 What Forwardly Does
+## 🔁 What Forwardly Does
 
 Forwardly helps you:
 
