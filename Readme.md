@@ -4,7 +4,6 @@ Forwardly is a FastAPI-based web application that helps students and professiona
 
 It generates realistic, constructive, and encouraging analysis using LLMs — helping users improve their resume and prepare better before applying.
 
----
 
 ## 🚀 Live Demo
 
@@ -12,9 +11,8 @@ Deployed on Railway.
 
 https://forwardly-production-d959.up.railway.app/
 
----
 
-## 🚀 What Forwardly Does
+## 🧠 What Forwardly Does
 
 Forwardly helps you:
 
@@ -27,7 +25,6 @@ Forwardly helps you:
 
 It is designed for individuals — not recruiters or bulk evaluation.
 
----
 
 ## 🧠 How It Helps You
 
@@ -41,7 +38,6 @@ Forwardly focuses on:
 The goal is simple:  
 **Help you apply more confidently and more strategically.**
 
----
 
 ## 🎯 Target Users
 
@@ -50,7 +46,6 @@ The goal is simple:
 - Engineers switching domains
 - Anyone who wants structured resume feedback before applying
 
----
 
 ## 🔁 Application Flow
 
@@ -61,7 +56,6 @@ The goal is simple:
 5. AI generates structured analysis
 6. Analysis is rendered in UI
 
----
 
 ## 🌱 Planned Enhancements
 
@@ -74,7 +68,6 @@ Future iterations may include:
 - User accounts and saved history
 - Tracking applications and resumes
 
----
 
 
 # 🏗️ Technical Overview
@@ -94,7 +87,6 @@ Each core feature is organized as an independent module with its own:
 
 This keeps responsibilities grouped by domain instead of technical layer.
 
----
 ## 📁 Project Structure
 
 
@@ -139,7 +131,6 @@ app/
 - **Frontend:** HTML + Bootstrap + Vanilla JavaScript (AJAX)
 - **Deployment:** Railway
 
----
 
 ## 📊 Database Design
 
@@ -151,7 +142,6 @@ Core tables:
 
 List endpoints use selective column queries to avoid loading heavy text fields unnecessarily.
 
----
 
 ## 🧠 AI Integration
 
@@ -160,7 +150,6 @@ List endpoints use selective column queries to avoid loading heavy text fields u
 - Deterministic analysis format
 - Encouraging but realistic tone
 
----
 
 ## 🔁 Application Flow
 
@@ -171,7 +160,6 @@ List endpoints use selective column queries to avoid loading heavy text fields u
 5. AI generates structured analysis
 6. Analysis is rendered in UI
 
----
 
 ## 💻 Local Setup
 
@@ -216,7 +204,6 @@ Visit:
 http://127.0.0.1:8000
 ```
 
----
 
 ## 🚂 Deployment
 
@@ -228,7 +215,6 @@ Deployed using Railway:
 
 Note: If using ephemeral storage, uploaded files may reset on redeploy.
 
----
 
 ## 📄 License
 
