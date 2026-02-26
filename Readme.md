@@ -25,7 +25,6 @@ Forwardly helps you:
 
 It is designed for individuals — not recruiters or bulk evaluation.
 
-
 ## 🧠 How It Helps You
 
 Forwardly focuses on:
@@ -68,7 +67,8 @@ Future iterations may include:
 - User accounts and saved history
 - Tracking applications and resumes
 
-
+### Analysis Page
+![Analysis Output](images/analysis.png)
 
 # 🏗️ Technical Overview
 
